@@ -37,7 +37,6 @@ function App() {
    <HomeScreen / >
    <div>
       <h2>Firebase Data:</h2>
-
         {data && <p>{data.genres}</p>}
         
     </div>
