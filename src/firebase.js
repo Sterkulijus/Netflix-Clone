@@ -88,7 +88,7 @@ const fetchData = async (documentId) => {
     console.error('Error fetching data from Firestore:', error);
   }
 };
-export { firestore, fetchData };
+export { firestore, fetchData , colRef};
 
 // Call the fetchData function with the specific document ID
 //fetchData('tt0000929');

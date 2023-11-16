@@ -2,31 +2,26 @@ import React, { useEffect, useState } from 'react';
 import HomeScreen from "./HomeScreen";
 import './firebase';
 import './App.css';
-import  {firestore, fetchData }from './firebase'; 
+import  {firestore, fetchData , colRef}from './firebase'; 
+import { getFirestore, doc, getDoc,collection,getDocs,
+  onSnapshot,query,where
+} from 'firebase/firestore';
 function App() {
 
+  const [basics, setBasics] = useState([]);
 
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
-  
-    useEffect(() => {
-      const fetchDataAndDisplay = async () => {
-        try {
-          // Call the fetchData function
-          const fetchedData = await fetchData('tt0000929');
-  
-          // Update the state with the fetched data
-          setData(fetchedData);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-          setError(error);
-        }
-      };
-  
-      // Call the function to fetch and display data
-      fetchDataAndDisplay();
-     
-    }, []);
+  useEffect(() => {
+    // Assuming getBasicsData is a function that fetches data from Firebase
+    const unsubscribe = onSnapshot(colRef,(snapshot)=>{ // if whole table is needed just pass in colRef
+      let basics = []
+      snapshot.docs.forEach((doc)=>{
+        basics.push({...doc.data(),id: doc.id})
+      })
+      console.log(basics)
+      setBasics(basics);
+      })    // Clean up the subscription when the component unmounts
+    return () => unsubscribe();
+  }, []);
 
   
   return (
@@ -35,14 +30,16 @@ function App() {
     <div className="App">
 
    <HomeScreen / >
-   <div>
+   {/* <div>
       <h2>Firebase Data:</h2>
-        {data && <p>{data.genres}</p>}
+        {basics && <p>{basics}</p>}
         
-    </div>
-
-
-
+    </div> */}
+      <ul>
+        {basics.map((item) => (
+          <li key={item.id}>{item.genres}</li>
+        ))}
+      </ul>
     </div>
   );
 }
