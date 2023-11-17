@@ -32,7 +32,7 @@ let basics = []
 snapshot.docs.forEach((doc)=>{
   basics.push({...doc.data(),id: doc.id})
 })
-console.log(basics)
+//console.log(basics)
 })
 //Gycio testai
 

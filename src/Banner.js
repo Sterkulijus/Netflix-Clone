@@ -10,11 +10,11 @@ function Banner() {
   return <header className="banner" style={{
     backgroundSize: "cover",
     backgroundPosition: "center center",
-    backgroundImage: `url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Black_flag.svg/1200px-Black_flag.svg.png")`,
+    backgroundImage: `url("https://cdn.vox-cdn.com/thumbor/N0OJZTkzP1rOcGXqUM2RzYpr82I=/0x822:1500x1684/1400x1050/filters:focal(630x1237:870x1477):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/55661101/ST2_Vertical_Main_PRE_US.0.jpg")`,
   }}>
 
 <div className="banner__contents">
-  <h1 className="banner__title">Movie Name</h1>
+  <h1 className="banner__title">Stranger Things</h1>
   <div className="banner__buttons">
     <button className='banner_button'>Play</button>
     <button className='banner_button'>My List</button>

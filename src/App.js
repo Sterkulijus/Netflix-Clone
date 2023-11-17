@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 import HomeScreen from "./HomeScreen";
 import './firebase';
 import './App.css';
-import  {firestore, fetchData , colRef}from './firebase'; 
-import { getFirestore, doc, getDoc,collection,getDocs,
-  onSnapshot,query,where
-} from 'firebase/firestore';
+import  {colRef}from './firebase'; 
+import {  onSnapshot } from 'firebase/firestore';
 function App() {
 
   const [basics, setBasics] = useState([]);
@@ -17,7 +15,7 @@ function App() {
       snapshot.docs.forEach((doc)=>{
         basics.push({...doc.data(),id: doc.id})
       })
-      console.log(basics)
+      //console.log(basics)
       setBasics(basics);
       })    // Clean up the subscription when the component unmounts
     return () => unsubscribe();
@@ -35,11 +33,11 @@ function App() {
         {basics && <p>{basics}</p>}
         
     </div> */}
-      <ul>
+      {/* <ul>
         {basics.map((item) => (
           <li key={item.id}>{item.genres}</li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }
