@@ -1,10 +1,10 @@
-import Banner from './Banner'
+import Banner from '../Banner'
 import './HomeScreen.css'
-import Nav from './Nav'
+import Nav from '../Nav'
 import React, { useEffect, useState } from 'react';
-import  {colRef}from './firebase'; 
+import  {colRef}from '../firebase'; 
 import {  onSnapshot,query,where } from 'firebase/firestore';
-import Row from './Row';
+import Row from '../Row';
 
 function HomeScreen() {
   const [scifi, setSciFi] = useState([]);

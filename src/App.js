@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import HomeScreen from "./HomeScreen";
+import HomeScreen from "./screens/HomeScreen";
 import './firebase';
 import './App.css';
 import  {colRef}from './firebase'; 
 import {  onSnapshot } from 'firebase/firestore';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import LoginScreen from './screens/LoginScreen';
 function App() {
+
+  const user = null;
 
   const [basics, setBasics] = useState([]);
 
@@ -25,9 +29,22 @@ function App() {
   return (
 
 
-    <div className="App">
+  <div className="App">
 
-   <HomeScreen / >
+   <Router>
+      {!user ? (
+        <LoginScreen />
+      ) : (
+      <Routes>
+        <Route path='/test'>
+        </Route>
+        <Route exact path='/' element={<HomeScreen / >}>
+        </Route>
+      </Routes>
+      )}
+    </Router>
+
+
    {/* <div>
       <h2>Firebase Data:</h2>
         {basics && <p>{basics}</p>}
