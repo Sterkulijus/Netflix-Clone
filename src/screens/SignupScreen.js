@@ -12,7 +12,7 @@ const passwordRef = useRef(null);
             emailRef.current.value,
             passwordRef.current.value)
             .then((authUser) => {
-               // console.log(authUser)
+                console.log(authUser)
             })
             .catch(error => {
                 alert(error.message);
@@ -25,7 +25,7 @@ const passwordRef = useRef(null);
             auth,        
             emailRef.current.value,
             passwordRef.current.value) .then((authUser) => {
-                //console.log(authUser)
+                console.log(authUser)
             })
             .catch(error => {
                 alert(error.message);

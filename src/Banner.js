@@ -14,7 +14,7 @@ function Banner() {
   }}>
 
 <div className="banner__contents">
-  <h1 className="banner__title">Stranger Things</h1>
+  <h1 className="banner__title">Stranger Things</h1>    
   <div className="banner__buttons">
     <button className='banner_button'>Play</button>
     <button className='banner_button'>My List</button>

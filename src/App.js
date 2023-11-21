@@ -4,29 +4,35 @@ import './firebase';
 import './App.css';
 import  {colRef}from './firebase'; 
 import {  onSnapshot } from 'firebase/firestore';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route,} from 'react-router-dom';
 import LoginScreen from './screens/LoginScreen';
 import {auth} from './firebase.js'
 import { onAuthStateChanged } from "firebase/auth"
+import { useDispatch, useSelector } from 'react-redux';
+import { login, logout, selectUser } from './features/userSlice.js';
+
 function App() {
+  const user = useSelector(selectUser);
 
-useEffect(()=>{
- const unsubscribe = onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/auth.user
-      console.log(user);
-      // ...
-    } else {
-      // User is signed out
-      
-    }
-  });
-  return unsubscribe;
-},[])
+  const dispatch = useDispatch();
+  
+  useEffect(()=>{
+    const unsubscribe = onAuthStateChanged(auth, (userAuth) => {
+      if (userAuth) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user      
+     dispatch(login({
+       uid:userAuth.uid,
+      email:userAuth.email
+    }))
+  } else {
+    // User is signed out
+    dispatch(logout());
+  }
+});
+return unsubscribe;
+},[dispatch])
 
-
-  const user = null;
 
   const [basics, setBasics] = useState([]);
 
@@ -43,38 +49,18 @@ useEffect(()=>{
     return () => unsubscribe();
   }, []);
 
-  
   return (
-
-
-  <div className="App">
-
-   <Router>
-      {!user ? (
-        <LoginScreen />
-      ) : (
-      <Routes>
-        <Route path='/test'>
-        </Route>
-        <Route exact path='/' element={<HomeScreen / >}>
-        </Route>
-      </Routes>
-      )}
-    </Router>
-
-
-   {/* <div>
-      <h2>Firebase Data:</h2>
-        {basics && <p>{basics}</p>}
-        
-    </div> */}
-      {/* <ul>
-        {basics.map((item) => (
-          <li key={item.id}>{item.genres}</li>
-        ))}
-      </ul> */}
+    <div className="App">
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={!user ? <LoginScreen /> : <HomeScreen />} />
+        </Routes>
+      </Router>
     </div>
-  );
+  </div>
+     
+      )
 }
 
 
