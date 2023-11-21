@@ -6,7 +6,25 @@ import  {colRef}from './firebase';
 import {  onSnapshot } from 'firebase/firestore';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import LoginScreen from './screens/LoginScreen';
+import {auth} from './firebase.js'
+import { onAuthStateChanged } from "firebase/auth"
 function App() {
+
+useEffect(()=>{
+ const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      console.log(user);
+      // ...
+    } else {
+      // User is signed out
+      
+    }
+  });
+  return unsubscribe;
+},[])
+
 
   const user = null;
 

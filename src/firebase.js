@@ -1,8 +1,13 @@
 // Import the functions you need from the SDKs you need
+//import firebase from 'firebase/app';
+
+import {firebase} from "firebase/app"; import "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc,collection,getDocs,
   onSnapshot,query,where
 } from 'firebase/firestore';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
+//import firebase from 'firebase/app';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,7 +22,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
+
 // firestore is the DB variable
 const firestore = getFirestore(app);
 // collection ref
@@ -34,10 +41,12 @@ snapshot.docs.forEach((doc)=>{
 })
 //console.log(basics)
 })
-//Gycio testai
+/////////////////////////////////////////////////////////////////////////
+// REAL time data base stuff
+const auth = getAuth(app);
 
-//Gycio testai ^
 
+/////////////////////////////////////////////////////////////////////////
 //one time running data base
 // //Get Data from colRef
 // getDocs(colRef)
@@ -88,7 +97,7 @@ const fetchData = async (documentId) => {
     console.error('Error fetching data from Firestore:', error);
   }
 };
-export { firestore, fetchData , colRef};
+export { firestore, fetchData , colRef, auth};
 
 // Call the fetchData function with the specific document ID
 //fetchData('tt0000929');
