@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Banner.css";
-
+import axios from './axios';
+import requests from './Requests';
 function Banner() {
+const [movie, setMovies] = useState([]);
+
+useEffect(()=>{
+  async function fetchData(){
+    const request = await axios.get(requests.fetchNetflixOriginals);
+    setMovies(request.data.results[Math.floor(Math.random()* request.data.results.length-1)]);
+    return request;
+  }
+  fetchData();
+  },[])
 
     function truncate(string, n){
         return string?.length > n ? string.substr(0, n - 1) + '...': string;
@@ -10,16 +21,17 @@ function Banner() {
   return <header className="banner" style={{
     backgroundSize: "cover",
     backgroundPosition: "center center",
-    backgroundImage: `url("https://cdn.vox-cdn.com/thumbor/N0OJZTkzP1rOcGXqUM2RzYpr82I=/0x822:1500x1684/1400x1050/filters:focal(630x1237:870x1477):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/55661101/ST2_Vertical_Main_PRE_US.0.jpg")`,
+    backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
   }}>
 
 <div className="banner__contents">
-  <h1 className="banner__title">Stranger Things</h1>    
+  <h1 className="banner__title">{movie?.tittle || movie?.name || movie?.original_name}</h1>    
   <div className="banner__buttons">
     <button className='banner_button'>Play</button>
     <button className='banner_button'>My List</button>
   </div>
-  <h1 className="banner_description">{truncate('This is a test descriptionThis is a test descriptionThis is a test descriptionThis is a test descriptionThis is a test descriptionThis is a test descriptionThis is a test descriptionThis is a test descriptionThis is a test descriptionThis is a test descriptionThis is a test descriptionThis is a test descriptionThis is a test descriptionThis is a test descriptionThis is a test description'
+  <h1 className="banner_description">{truncate(
+    movie?.overview
   , 150)}
   </h1>
 </div>
