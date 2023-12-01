@@ -40,11 +40,7 @@ const passwordRef = useRef(null);
         <input ref={emailRef} placeholder='Email' type='email' />
         <input ref={passwordRef} placeholder='Passowrd' type='password' />
         <button type='submit' onClick={(signIn)}>Sign In</button>
-
-        <h4>
-            <span className='signupScreen__gray'>New to netflix? </span>
-            <span className='signupScreen__link' onClick={register}> Sign Up now.</span>
-        </h4>
+        <button type='submit' onClick={(register)}>Sign Up</button>
     </form>
 
   </div>

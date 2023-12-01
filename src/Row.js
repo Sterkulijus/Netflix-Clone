@@ -3,6 +3,7 @@ import './Row.css'
 import axios from './axios';
 import requests from './Requests';
 
+
 function Row({title,fetchURL,isLargeRow = false}) {
 const [movies, setMovies] = useState([]);
 
@@ -18,11 +19,12 @@ fetchData();
 },[fetchURL])
 
 
+
 return (
   <div className='row'>
     <h2 style={{ color: 'white' }}>{title}</h2>
     <div className="row__posters">  
-      {movies.map(movie => (
+      {movies.map(movie => console.log(movie.id) || (
         <div key={movie.name} className="movie__container">
           <img
             className={`row__poster ${isLargeRow && "row__posterLarge"}`}
@@ -34,6 +36,7 @@ return (
           />
           <p className="movie__text">{movie.originalTitle}</p>
         </div>
+        
       ))}
     </div>
   </div>
