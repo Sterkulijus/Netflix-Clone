@@ -1,48 +1,60 @@
-import React, { useDebugValue, useEffect,useState } from 'react'
-import './Row.css'
+import React, { useEffect, useState } from 'react';
+import './Row.css';
 import axios from './axios';
-import requests from './Requests';
 
+function Row({ title, fetchURL, isLargeRow = false }) {
+  const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
-function Row({title,fetchURL,isLargeRow = false}) {
-const [movies, setMovies] = useState([]);
+  const base_url = "https://image.tmdb.org/t/p/original/";
 
-const base_url = "https://image.tmdb.org/t/p/original/";
+  useEffect(() => {
+    async function fetchData() {
+      const requests = await axios.get(fetchURL);
+      setMovies(requests.data.results);
+      return requests;
+    }
+    fetchData();
+  }, [fetchURL]);
 
-useEffect(()=>{
-async function fetchData(){
-  const requests = await axios.get(fetchURL);
-  setMovies(requests.data.results);
-  return requests;
-}
-fetchData();
-},[fetchURL])
+  const handleMovieClick = (movie) => {
+    console.log(movie);
+    setSelectedMovie(movie);
+  };
 
-
-
-return (
-  <div className='row'>
-    <h2 style={{ color: 'white' }}>{title}</h2>
-    <div className="row__posters">  
-      {movies.map(movie => console.log(movie.id) || (
-        <div key={movie.name} className="movie__container">
+  return (
+    <div className='row'>
+      <h2 style={{ color: 'white' }}>{title}</h2>
+      <div className="row__posters">
+        {movies.map((movie) => (
+          <div key={movie.name} className="movie__container" onClick={() => handleMovieClick(movie)}>
+            <img
+              className={`row__poster ${isLargeRow && "row__posterLarge"}`}
+              src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
+              alt={movie.name}
+            />
+            <p className="movie__text">{movie.originalTitle}</p>
+          </div>
+        ))}
+      </div>
+      {selectedMovie && (
+        <div className="selectedMovieDetails">
           <img
-            className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-            key={movie.id}
-            src={`${base_url}${
-              isLargeRow ? movie.poster_path : movie.backdrop_path
-            }`}
-            alt={movie.name}
+            className={`selectedMoviePoster ${isLargeRow && "selectedMoviePosterLarge"}`}
+            src={`${base_url}${isLargeRow ? selectedMovie.poster_path : selectedMovie.backdrop_path}`}
+            alt={selectedMovie.name}
           />
-          <p className="movie__text">{movie.originalTitle}</p>
+          <ul>
+            <li>{`Title: ${selectedMovie.original_title}`}</li>
+            <li>{`Release Date: ${selectedMovie.release_date}`}</li>
+            <li>{`Rating: ${selectedMovie.vote_average}`}</li>
+            <li>{`${selectedMovie.overview}`}</li>
+            {/* Add more attributes as needed */}
+          </ul>
         </div>
-        
-      ))}
+      )}
     </div>
-  </div>
   );
 }
 
-export default Row
-
-//originalTitle
+export default Row;

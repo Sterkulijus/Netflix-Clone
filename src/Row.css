@@ -37,3 +37,36 @@ margin-right: 10px;
         color: white;
         font-weight: bold ;
     }
+
+    .selectedMovieDetails {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .selectedMoviePoster {
+        max-width: 1500px; /* Adjust the maximum width as needed */
+        height: auto;
+        margin-right: 20px;
+      }
+
+      .selectedMovieDetails ul {
+        font-weight: bold;
+        font-size: large;
+        font-size: 36px;
+        list-style-type: none;
+        color: white;
+        display: flex;
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: center; /* Center items horizontally */
+        margin-right: auto;
+        padding: 0;
+      }
+
+      .selectedMovieDetails li {
+        margin-bottom: 30px;
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: center; /* Center items horizontally */
+       
+      }
