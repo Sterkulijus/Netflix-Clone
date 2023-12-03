@@ -46,7 +46,7 @@ margin-right: 10px;
       }
 
       .selectedMoviePoster {
-        max-width: 1500px; /* Adjust the maximum width as needed */
+        max-width: 800px; /* Adjust the maximum width as needed */
         height: auto;
         margin-right: 20px;
       }
@@ -54,7 +54,7 @@ margin-right: 10px;
       .selectedMovieDetails ul {
         font-weight: bold;
         font-size: large;
-        font-size: 36px;
+        font-size: 20px;
         list-style-type: none;
         color: white;
         display: flex;
