@@ -1,0 +1,3 @@
+node movie_cli.js search "Star Wars"
+
+node movie_cli.js get 123
