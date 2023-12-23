@@ -1,13 +1,21 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { store } from './src/app/store.js';
+import App from './src/App.js';
+import reportWebVitals from './src/reportWebVitals.js';
 import './index.css';
-
 const container = document.getElementById('root');
+
+const api = require('./API/server')
 const root = createRoot(container);
+
+const HOST = 'localhost'
+const PORT = 8888
+
+api.listen(PORT,()=>console.log("Sth"))
+
+
 
 root.render(
   <React.StrictMode>
