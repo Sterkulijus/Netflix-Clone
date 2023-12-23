@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import HomeScreen from "./screens/HomeScreen";
 import './firebase';
 import './App.css';
@@ -10,8 +10,10 @@ import {auth} from './firebase.js'
 import { onAuthStateChanged } from "firebase/auth"
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout, selectUser } from './features/userSlice.js';
+import Apps from './API.js';
 
 function App() {
+  
   const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
@@ -50,7 +52,9 @@ return unsubscribe;
   }, []);
 
   return (
+    
     <div className="App">
+        <Apps />
     <div className="App">
       <Router>
         <Routes>

@@ -18,7 +18,7 @@ function Row({ title, fetchURL, isLargeRow = false }) {
   }, [fetchURL]);
 
   const handleMovieClick = (movie) => {
-    console.log(movie);
+   // console.log(movie);
     setSelectedMovie(movie);
   };
 
