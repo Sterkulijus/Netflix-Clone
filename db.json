@@ -2,28 +2,33 @@
   "genres":
   [
     {
-      "id": "trending/all/week?api_key=${API_KEY}&language=en-US"  
+      "id": "trending/all/week?api_key=1b982b2c9a1e9dbca5448cc83b826a3b&language=en-US"  
     },
     {
-      "id": "discover/tv?api_key=${API_KEY}&with_networks=213"
+      "id": "discover/tv?api_key=1b982b2c9a1e9dbca5448cc83b826a3b&with_networks=213"
     },
     {
-      "id": "movie/top_rated?api_key=${API_KEY}&language=en-US"
+      "id": "movie/top_rated?api_key=1b982b2c9a1e9dbca5448cc83b826a3b&language=en-US"
     },
     {
       "id": "discover/movie?api_key=1b982b2c9a1e9dbca5448cc83b826a3b&with_genres=28"
     },
     {
-      "id": "discover/movie?api_key=${API_KEY}&with_genres=35"
+      "id": "discover/movie?api_key=1b982b2c9a1e9dbca5448cc83b826a3b&with_genres=35"
     },
     {
-      "id":" discover/movie?api_key=${API_KEY}&with_genres=27"
+      "id":"discover/movie?api_key=1b982b2c9a1e9dbca5448cc83b826a3b&with_genres=27"
     },
     {
-      "id": "discover/movie?api_key=${API_KEY}&with_genres=10749"
+      "id": "discover/movie?api_key=1b982b2c9a1e9dbca5448cc83b826a3b&with_genres=10749"
     },
     {
-      "id":" discover/movie?api_key=${API_KEY}&with_genres=99"
+      "id":"discover/movie?api_key=1b982b2c9a1e9dbca5448cc83b826a3b&with_genres=99"
     }
-  ]
+  ],
+"trending":
+{
+  "id": "trending/all/week?api_key=1b982b2c9a1e9dbca5448cc83b826a3b&language=en-US"
+}
+  
 }

@@ -2,17 +2,52 @@ import React, { useState, useEffect } from 'react';
 import "./Banner.css";
 import axios from './axios';
 import requests from './Requests';
+
+const api = axios.create({
+  baseURL: 'http://localhost:3000/',
+});
+const tmdb = axios.create({
+  baseURL: "https://api.themoviedb.org/3"
+});
+
 function Banner() {
 const [movie, setMovies] = useState([]);
 
-useEffect(()=>{
-  async function fetchData(){
-    const request = await axios.get(requests.fetchNetflixOriginals);
-    setMovies(request.data.results[Math.floor(Math.random()* request.data.results.length-1)]);
-    return request;
-  }
-  fetchData();
-  },[])
+useEffect(() => {
+  const fetchGenres = async () => {
+    try {
+      const response = await api.get('/trending'); 
+     // console.log(response.data);
+      const request = await tmdb.get(response.data.id);
+      //console.log(request.data);
+      setMovies(request.data.results[Math.floor(Math.random() * request.data.results.length - 1)]);
+      //setGenres(response.data);
+    } catch (error) {
+      console.error('Error fetching genres:', error);
+    }
+  };
+
+  fetchGenres();
+}, []);
+
+
+
+// useEffect(()=>{
+//   async function fetchData(){
+//     try {
+//       if (Array.isArray(genres) && genres.length > 0) {
+//         const request = await tmdb.get(genres[0]?.id);
+//         //console.log("MOVIEEES : " + request.data);
+//         setMovies(request.data.results[Math.floor(Math.random() * request.data.results.length - 1)]);
+//       } else {
+//         console.error('Genres is undefined or empty.');
+//       }
+//     } catch (error) {
+//       console.error('Error fetching data:', error);
+//     }
+//   };
+//   fetchData();
+//   },[])
 
     function truncate(string, n){
         return string?.length > n ? string.substr(0, n - 1) + '...': string;

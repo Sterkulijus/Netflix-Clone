@@ -7,15 +7,20 @@ function Row({ title, fetchURL, isLargeRow = false }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const base_url = "https://image.tmdb.org/t/p/original/";
+  
+  const tmdb = axios.create({
+    baseURL: "https://api.themoviedb.org/3"
+  });
 
   useEffect(() => {
     async function fetchData() {
-      const requests = await axios.get(fetchURL);
+      const requests = await tmdb.get(fetchURL);
+      console.log(title +  requests.data.results);
       setMovies(requests.data.results);
       return requests;
     }
     fetchData();
-  }, [fetchURL]);
+  }, []);   // ADD or DELETE fetchURL to see movies apier :P
 
   const handleMovieClick = (movie) => {
    // console.log(movie);
@@ -26,7 +31,7 @@ function Row({ title, fetchURL, isLargeRow = false }) {
     <div className='row'>
       <h2 style={{ color: 'white' }}>{title}</h2>
       <div className="row__posters">
-        {movies.map((movie) => (
+        {movies && movies.length > 0 && movies.map((movie) => (
           <div key={movie.name} className="movie__container" onClick={() => handleMovieClick(movie)}>
             <img
               className={`row__poster ${isLargeRow && "row__posterLarge"}`}
