@@ -5,9 +5,14 @@ import requests from './Requests';
 function Banner() {
 const [movie, setMovies] = useState([]);
 
+const apii = axios.create({
+  baseURL: "http://localhost:8888/"
+});
+
+
 useEffect(()=>{
   async function fetchData(){
-    const request = await axios.get(requests.fetchNetflixOriginals);
+    const request = await apii.get('/getMovies/trending');
     setMovies(request.data.results[Math.floor(Math.random()* request.data.results.length-1)]);
     return request;
   }
