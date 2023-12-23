@@ -1,0 +1,10 @@
+Set-Location "C:\Users\gytis\OneDrive\Desktop\Software Engineering\NtuaFlix\ntuaflix"
+
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+
+json-server --watch db.json
+
+
+nodemon ServerIndex.js
