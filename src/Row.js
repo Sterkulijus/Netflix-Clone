@@ -2,15 +2,22 @@ import React, { useEffect, useState } from 'react';
 import './Row.css';
 import axios from './axios';
 
+const apii = axios.create({
+  baseURL: "http://localhost:8888"
+});
+
 function Row({ title, fetchURL, isLargeRow = false }) {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const base_url = "https://image.tmdb.org/t/p/original/";
 
+
+  
   useEffect(() => {
     async function fetchData() {
-      const requests = await axios.get(fetchURL);
+      const requests = await apii.get(fetchURL);
+      console.log(requests.data);
       setMovies(requests.data.results);
       return requests;
     }

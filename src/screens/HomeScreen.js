@@ -19,15 +19,16 @@ function HomeScreen() {
 
 <Row
     title="NTUAFLIX ORIGINALS"
-fetchURL={requests.fetchNetflixOriginals}
+fetchURL={'/getMovies/NetflixOriginals'}
 isLargeRow
     />
-    <Row title="TRENDING NOW"fetchURL={requests.fetchTrending} />
-    <Row title="TOP RATED"fetchURL={requests.fetchTopRated} />
-      <Row title="ACTION MOVIES"fetchURL={requests.fetchActionMovies} />
-      <Row title="COMEDY MOVIES"fetchURL={requests.fetchComedyMovies} />
-     <Row title="HORROR MOVIES"fetchURL={requests.fetchHorrorMovies} />
- <Row title="ROMANCE MOVIES"fetchURL={requests.fetchRomanceMovies} />
+    <Row title="TRENDING NOW"fetchURL={'/getMovies/trending'} />
+    <Row title="TOP RATED"fetchURL={'/getMovies/TopRated'} />
+      <Row title="ACTION MOVIES"fetchURL={'/getMovies/ActionMovies'} />
+      <Row title="COMEDY MOVIES"fetchURL={'/getMovies/ComedyMovies'} />
+     <Row title="HORROR MOVIES"fetchURL={'/getMovies/HorrorMovies'} />
+ <Row title="ROMANCE MOVIES"fetchURL={'/getMovies/RomanceMovies'} />
+ <Row title="DOCUMENTARIES"fetchURL={'/getMovies/Documentaries'} />
     </div>
     </div>
   );

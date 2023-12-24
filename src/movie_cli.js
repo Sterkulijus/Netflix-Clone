@@ -4,16 +4,14 @@ const yargs = require('yargs');
 const axios = require('axios');
 const requests = require('./RequestsCLI');
 
-const API_KEY = "1b982b2c9a1e9dbca5448cc83b826a3b";
-const baseURL = "https://api.themoviedb.org/3";
 
 const instance = axios.create({
-  baseURL: baseURL,
+  baseURL: "http://localhost:8888/",
 });
 
 async function getMovieInfo(movieId) {
   try {
-    const response = await instance.get(`/movie/${movieId}?api_key=${API_KEY}&language=en-US`);
+    const response = await instance.get(`/findID/${movieId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching movie information:", error.message);
@@ -23,7 +21,7 @@ async function getMovieInfo(movieId) {
 
 async function searchMovies(query) {
   try {
-    const response = await instance.get(`/search/movie?api_key=${API_KEY}&query=${query}&language=en-US`);
+    const response = await instance.get(`/searchMovies/${query}`);
     return response.data.results;
   } catch (error) {
     console.error("Error searching for movies:", error.message);

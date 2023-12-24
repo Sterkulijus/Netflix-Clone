@@ -22,5 +22,11 @@ fetchRomanceMovies : {
 },
 fetchDocumentaries : {
    id : "discover/movie?api_key=1b982b2c9a1e9dbca5448cc83b826a3b&with_genres=99" 
+},
+searchMovies : {
+   id : "/search/movie?api_key=1b982b2c9a1e9dbca5448cc83b826a3b&query=" 
+},
+findId : {
+   id : "?api_key=1b982b2c9a1e9dbca5448cc83b826a3b&language=en-US" 
 }
 }
