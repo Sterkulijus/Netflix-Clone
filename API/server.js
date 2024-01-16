@@ -74,7 +74,7 @@ api.get('/getMovies/:category', async (req, res) => {
 api.get('/trending',(req,res)=>{
     res.status(200).send(data.fetchTrending.id)
 })
-api.get('/NetflixOriginals',(req,res)=>{
+api.get('x',(req,res)=>{
     res.status(200).send(data.fetchNetflixOriginals.id)
 })
 api.get('/TopRated',(req,res)=>{
